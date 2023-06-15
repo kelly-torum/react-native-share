@@ -19,9 +19,9 @@ RCT_EXPORT_MODULE();
     
     if ([options objectForKey:@"message"] && [options objectForKey:@"message"] != [NSNull null]) {
         NSString *text = [RCTConvert NSString:options[@"message"]];
-        text = [text stringByAppendingString: [@" " stringByAppendingString: options[@"url"]] ];
+        // text = [text stringByAppendingString: [@" " stringByAppendingString: options[@"url"]] ];
         NSString *whatsAppNumber = [RCTConvert NSString:options[@"whatsAppNumber"]];
-        
+
         if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]) {
             NSLog(@"WhatsApp installed");
         } else {

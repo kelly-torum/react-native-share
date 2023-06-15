@@ -85,7 +85,7 @@ RCT_EXPORT_MODULE()
     @"INSTAGRAMSTORIES": @"instagramstories",
     @"TELEGRAM": @"telegram",
     @"EMAIL": @"email",
-    @"MESSENGER": @"messanger",
+    @"MESSENGER": @"messenger",
     @"VIBER": @"viber",
 
     @"SHARE_BACKGROUND_IMAGE": @"shareBackgroundImage",
