@@ -19,7 +19,7 @@ RCT_EXPORT_MODULE();
     
     if ([options objectForKey:@"message"] && [options objectForKey:@"message"] != [NSNull null]) {
         NSString *text = [RCTConvert NSString:options[@"message"]];
-        // text = [text stringByAppendingString: [@" " stringByAppendingString: options[@"url"]] ];
+        text = [text stringByAppendingString: [@" " stringByAppendingString: options[@"url"]] ];
         NSString *whatsAppNumber = [RCTConvert NSString:options[@"whatsAppNumber"]];
 
         if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]) {
@@ -70,8 +70,11 @@ RCT_EXPORT_MODULE();
                     documentInteractionController.UTI = @"net.whatsapp.image";
                     documentInteractionController.delegate = self;
                     
-                    [documentInteractionController presentOpenInMenuFromRect:CGRectZero inView:[[[[[UIApplication sharedApplication] delegate] window] rootViewController] view] animated:YES];
-                    successCallback(@[@true, @""]);
+                    [documentInteractionController presentOpenInMenuFromRect:CGRectZero inView:[[[[[UIApplication sharedApplication] delegate] window] rootViewController] view] animated:YES];            
+                    if ([[UIApplication sharedApplication] canOpenURL: whatsappURL]) {
+                        [[UIApplication sharedApplication] openURL: whatsappURL];
+                        successCallback(@[@true, @""]);
+                    }
                 }
             } else {
                 NSError *error = [NSError errorWithDomain:@"com.rnshare" code:3 userInfo:@{ NSLocalizedDescriptionKey:@"Something went wrong"}];
